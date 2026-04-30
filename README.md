@@ -88,7 +88,14 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ## Quickstart
 
+Requires Node.js 18+ and pnpm.
+
+
 ```bash
+# 0. Clone
+git clone https://github.com/swit001/agentic-world-model.git
+cd agentic-world-model
+
 # 1. Install
 pnpm install
 
