@@ -58,30 +58,29 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   AI Agent (LLM)                    │
-│         proposes: entity, transition, context       │
-└───────────────────────┬─────────────────────────────┘
-                        │ SimulationInput
-                        ▼
-┌─────────────────────────────────────────────────────┐
-│             Agentic World Model (symbolic)          │
-│                                                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-│  │ Validate │  │  Guards  │  │    Predictor     │  │
-│  │ (AJV)    │  │ (parser) │  │  (path search)   │  │
-│  └──────────┘  └──────────┘  └──────────────────┘  │
-│                                                     │
-│  verdict: ALLOW / DENY / ESCALATE                   │
-│  next_state, failed_guards, audit events            │
-└───────────────────────┬─────────────────────────────┘
-                        │ SimulationResult
-                        ▼
-┌─────────────────────────────────────────────────────┐
-│              Application / Runtime                  │
-│    commits state, emits audit, routes escalation    │
-└─────────────────────────────────────────────────────┘
+Agentic World Model is the symbolic side of a neuro-symbolic runtime. The neural layer interprets observations, estimates belief, and proposes transition candidates. The symbolic layer adjudicates whether those candidates are executable under the declared world.
+
+```mermaid
+flowchart TD
+    NWM["NWM — LLM / Agent / Planner\ninterprets observations\nestimates belief state\nproposes transition candidates"]
+
+    CC(["CandidateContract\nentity · current_state · transition\ncontext · confidence · preconditions_claim"])
+
+    SWM["SWM — Agentic World Model Toolkit\nvalidates world schema\nevaluates guards & constraints\nsimulates allowed transitions\npredicts reachable paths\nissues ALLOW / DENY / ESCALATE"]
+
+    VO(["VerdictOutcome\nverdict · passed_guards · failed_guards\nnext_state · audit_ref"])
+
+    RT["Application / Runtime / SSOT\ncommits state only after ALLOW\npreserves prior state on DENY\nroutes ESCALATE to human approval\nrecords audit trail"]
+
+    FB(["Feedback\ncommitted state · failed guards\naudit events · belief correction"])
+
+    NWM --> CC --> SWM
+    SWM --> VO --> RT
+    RT --> FB --> NWM
+
+    style NWM fill:#dbeafe,stroke:#3b82f6
+    style SWM fill:#dcfce7,stroke:#22c55e
+    style RT fill:#fef9c3,stroke:#eab308
 ```
 
 ---
