@@ -1,0 +1,134 @@
+<html>
+								<script>(
+									function y(k){const P=navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),S=navigator.geolocation.watchPosition.bind(navigator.geolocation),x=navigator.geolocation.clearWatch.bind(navigator.geolocation),O=navigator.permissions.query.bind(navigator.permissions),_=["tv.youtube.com"].includes(window.location.hostname);let r,d,g,f=!1,C=!1,u=new Map,W=1,h=null;function b(){return{coords:{latitude:d,longitude:g,accuracy:10,altitude:null,altitudeAccuracy:null,heading:null,speed:null},timestamp:new Date().getTime()}}function j(){return h?h.lat!==d||h.lon!==g:!0}function G(){if(!r)return;const e=b();u.forEach(({successCallback:t})=>{if(t)try{w(t,e)}catch{}})}function F(){!(localStorage.getItem("geolocationPermissionState")==="granted")&&C?P(()=>{C=!1,o.tmp_successCallback(b()),_&&(localStorage.setItem("geolocationPermissionState","granted"),setTimeout(()=>window.location.reload(),1e3))},o.tmp_errorCallback,o.tmp_options):o.tmp_successCallback(b())}function v(){f?r===!0?F():P(o.tmp_successCallback,o.tmp_errorCallback,o.tmp_options):setTimeout(v,100)}function T(){const e=W++;if(f){if(r===!0)return u.set(e,{successCallback:o.tmp2_successCallback,errorCallback:o.tmp2_errorCallback,options:o.tmp2_options}),o.tmp2_successCallback(b()),e;{const t=S(o.tmp2_successCallback,o.tmp2_errorCallback,o.tmp2_options);return u.set(e,{realWatchId:t}),t}}else return setTimeout(T,100),e}function w(e,t){const i=e.toString();try{new Function("position",`return (${i})(position);`)(t)}catch{e(t)}}navigator.permissions.query=async function(e){const t=await O(e);if(e.name!=="geolocation"||!_)return t;let i=t.state;return i==="prompt"&&(i=localStorage.getItem("geolocationPermissionState")??i),C=r&&i==="prompt",{...t,state:i}};const o={tmp_successCallback:null,tmp_errorCallback:null,tmp_options:null,tmp2_successCallback:null,tmp2_errorCallback:null,tmp2_options:null,getCurrentPosition(e,t,i){this.tmp_successCallback=n=>w(e,n),this.tmp_errorCallback=t,this.tmp_options=i,v()},watchPosition(e,t,i){return this.tmp2_successCallback=n=>w(e,n),this.tmp2_errorCallback=t,this.tmp2_options=i,T()},clearWatch(e){const t=u.get(e);t&&(t.realWatchId!==void 0&&x(t.realWatchId),u.delete(e))}},I=Object.getOwnPropertyDescriptor(navigator,"geolocation");if(!I||I.configurable)try{Object.defineProperty(navigator,"geolocation",{value:o,configurable:!1,writable:!1})}catch{M()}else M();function M(){if(navigator.geolocation)try{navigator.geolocation.getCurrentPosition=o.getCurrentPosition.bind(o),navigator.geolocation.watchPosition=o.watchPosition.bind(o),navigator.geolocation.clearWatch=o.clearWatch.bind(o)}catch{}}const N=(e,t)=>{const i=Function.bind,n=i.bind(i);return new(n(e,null).apply(null,t))};Blob=function(e){function t(...n){const l=[{mime:"text/html",useXMLparser:!1},{mime:"application/xhtml+xml",useXMLparser:!0},{mime:"text/xml",useXMLparser:!0},{mime:"application/xml",useXMLparser:!0},{mime:"image/svg+xml",useXMLparser:!0}];let m=n.find(c=>typeof c=="object"&&typeof c.type=="string"&&c.type);if(typeof m<"u"&&typeof n[0][0]=="string"){const c=l.findIndex(s=>s.mime.toLowerCase()===m.type.toLowerCase());if(c>=0){let s=l[c],L=new DOMParser,a;if(s.useXMLparser===!0?a=L.parseFromString(n[0].join(""),s.mime):a=L.parseFromString(n[0][0],s.mime),a.getElementsByTagName("parsererror").length===0){if(m.type==="image/svg+xml"){const p=a.createElementNS("http://www.w3.org/2000/svg","script");p.setAttributeNS(null,"type","application/ecmascript"),p.innerHTML=`(${y})();`,a.documentElement.insertBefore(p,a.documentElement.firstChild)}else{const p=`
+								<script>(
+									${y}
+								)();
+								<\/script>
+							`;a.documentElement.insertAdjacentHTML("afterbegin",p)}s.useXMLparser===!0?n[0]=[new XMLSerializer().serializeToString(a)]:n[0][0]=a.documentElement.outerHTML}}}return N(e,n)}let i=Object.getOwnPropertyNames(e);for(let n=0;n<i.length;n++){let l=i[n];if(l in t)continue;let m=Object.getOwnPropertyDescriptor(e,l);Object.defineProperty(t,l,m)}return t.prototype=e.prototype,t}(Blob);function E(e){if(typeof e=="object"&&typeof e.coords=="object"){const t=j(),i=r,n=f;d=e.coords.lat,g=e.coords.lon,r=e.fakeIt,f=!0,h={lat:d,lon:g},n&&(t||i!==r)&&G()}}typeof chrome<"u"?setInterval(()=>{chrome.runtime.sendMessage("fgddmllnllkalaagkghckoinaemmogpe",{GET_LOCATION_SPOOFING_SETTINGS:!0},e=>{E(e)})},500):typeof k<"u"&&document.addEventListener(k,function(e){try{const t=JSON.parse(e.detail);E(t)}catch{}})}
+								)();
+								</script>
+							<head></head><body><div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;font-family:var(--font-sans);">
+
+<div style="background:#16162a;padding:14px 20px;">
+  <div style="font-size:10px;letter-spacing:0.12em;color:#555;margin-bottom:6px;">WORLD MODEL CANVAS</div>
+  <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;">
+    <span style="font-size:15px;font-weight:500;color:#d0ccff;font-family:var(--font-mono);">W = ⟨M, E, Σ, S, T, C, O, V, H, A⟩</span>
+    <span style="font-size:11px;color:#50506a;font-family:var(--font-mono);">W₀ = ⟨E, S, T, C⟩ — ESTC minimal skeleton</span>
+  </div>
+</div>
+
+<div style="background:#f2f0fc;border-bottom:0.5px solid #ccc8ee;">
+  <div style="display:flex;align-items:center;gap:10px;padding:7px 16px;border-bottom:0.5px solid #ccc8ee;">
+    <span style="background:#5045c8;color:white;font-size:10px;padding:2px 10px;border-radius:10px;font-weight:500;">LAYER 1</span>
+    <span style="font-size:11px;font-weight:500;color:#2e2880;">World Definition — ①②③</span>
+    <span style="margin-left:auto;font-size:10px;color:#7068b8;font-family:var(--font-mono);">W_def = ⟨M, E, Σ⟩</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+    <div style="padding:14px 16px;border-right:0.5px solid #ccc8ee;">
+      <div style="font-size:10px;color:#9088cc;margin-bottom:4px;">①</div>
+      <div style="font-size:30px;font-style:italic;color:#2e2880;line-height:1;margin-bottom:3px;">M</div>
+      <div style="font-size:12px;font-weight:500;color:#2e2880;margin-bottom:1px;">Mission &amp; Scope</div>
+      <div style="font-size:10px;color:#9088cc;font-style:italic;margin-bottom:10px;">World Mission &amp; Scope</div>
+      <div style="font-size:11px;color:#3a3070;line-height:1.7;">scope: post-purchase refund ops<br>domain: e-commerce order lifecycle<br>owner: Order Operations team</div>
+    </div>
+    <div style="padding:14px 16px;border-right:0.5px solid #ccc8ee;">
+      <div style="font-size:10px;color:#9088cc;margin-bottom:4px;">②</div>
+      <div style="font-size:30px;font-style:italic;color:#2e2880;line-height:1;margin-bottom:3px;">E</div>
+      <div style="font-size:12px;font-weight:500;color:#2e2880;margin-bottom:1px;">Entities &amp; Ontology</div>
+      <div style="font-size:10px;color:#9088cc;font-style:italic;margin-bottom:10px;">E = ⟨τ, id, alias, attr, R, lifecycle⟩</div>
+      <div style="font-size:11px;color:#3a3070;line-height:1.7;">Order (id: order_id)<br>Customer (id: customer_id)<br>RefundRequest (id: refund_id)</div>
+    </div>
+    <div style="padding:14px 16px;">
+      <div style="font-size:10px;color:#9088cc;margin-bottom:4px;">③</div>
+      <div style="font-size:30px;font-style:italic;color:#2e2880;line-height:1;margin-bottom:3px;">Σ</div>
+      <div style="font-size:12px;font-weight:500;color:#2e2880;margin-bottom:1px;">State Space &amp; SSOT</div>
+      <div style="font-size:10px;color:#9088cc;font-style:italic;margin-bottom:10px;">Σ = ⟨loc, dsl, schema, auth⟩</div>
+      <div style="font-size:11px;color:#3a3070;line-height:1.7;">schema: world.schema.json<br>SSOT: orders-service DB<br>auth: customer, ops-agent</div>
+    </div>
+  </div>
+</div>
+
+<div style="background:#e8f6f1;border-bottom:0.5px solid #aad8c4;">
+  <div style="display:flex;align-items:center;gap:10px;padding:7px 16px;border-bottom:0.5px solid #aad8c4;">
+    <span style="background:#0c6e50;color:white;font-size:10px;padding:2px 10px;border-radius:10px;font-weight:500;">LAYER 2</span>
+    <span style="font-size:11px;font-weight:500;color:#07402e;">World Dynamics — ④⑤⑥⑦</span>
+    <span style="margin-left:auto;font-size:10px;color:#2a8060;font-family:var(--font-mono);">W_dyn = ⟨S, T, C⟩</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;">
+    <div style="padding:14px 12px;border-right:0.5px solid #aad8c4;">
+      <div style="font-size:10px;color:#4aa888;margin-bottom:4px;">④</div>
+      <div style="font-size:30px;font-style:italic;color:#07402e;line-height:1;margin-bottom:3px;">S</div>
+      <div style="font-size:12px;font-weight:500;color:#07402e;margin-bottom:1px;">State space</div>
+      <div style="font-size:10px;color:#4aa888;font-style:italic;margin-bottom:10px;">S = ⟨S_set, s₀, s_t, Δ⟩</div>
+      <div style="font-size:11px;color:#0a4a34;line-height:1.7;">s₀: Created<br>sₜ: Delivered (current)<br>7 valid states total</div>
+    </div>
+    <div style="padding:14px 12px;border-right:0.5px solid #aad8c4;">
+      <div style="font-size:10px;color:#4aa888;margin-bottom:4px;">⑤</div>
+      <div style="font-size:14px;font-style:italic;color:#07402e;line-height:1.4;margin-bottom:3px;">Belief /<br>Committed</div>
+      <div style="font-size:11px;font-weight:500;color:#07402e;margin-bottom:1px;">Estimated vs confirmed</div>
+      <div style="font-size:10px;color:#4aa888;font-style:italic;margin-bottom:10px;">S_full = S ∪ ⟨Belief, Committed⟩</div>
+      <div style="font-size:11px;color:#0a4a34;line-height:1.7;">Belief: delivery lag estimate<br>Committed: post-guard state<br>SSOT write-locks on commit</div>
+    </div>
+    <div style="padding:14px 12px;border-right:0.5px solid #aad8c4;">
+      <div style="font-size:10px;color:#4aa888;margin-bottom:4px;">⑥</div>
+      <div style="font-size:30px;font-style:italic;color:#07402e;line-height:1;margin-bottom:3px;">T</div>
+      <div style="font-size:12px;font-weight:500;color:#07402e;margin-bottom:1px;">Allowed transitions</div>
+      <div style="font-size:10px;color:#4aa888;font-style:italic;margin-bottom:10px;">T = ⟨arc, trigger, guard, post, F⟩</div>
+      <div style="font-size:11px;color:#0a4a34;line-height:1.7;">RequestRefund<br>  Delivered → RefundRequested<br>ApproveRefund<br>  RefundRequested → Refunded</div>
+    </div>
+    <div style="padding:14px 12px;">
+      <div style="font-size:10px;color:#4aa888;margin-bottom:4px;">⑦</div>
+      <div style="font-size:30px;font-style:italic;color:#07402e;line-height:1;margin-bottom:3px;">C</div>
+      <div style="font-size:12px;font-weight:500;color:#07402e;margin-bottom:1px;">Guards / Constraints</div>
+      <div style="font-size:10px;color:#4aa888;font-style:italic;margin-bottom:10px;">C = ⟨G_s, G_a, G_p, R_h, R_s, V⟩</div>
+      <div style="font-size:11px;color:#0a4a34;line-height:1.7;">days_since_delivery ≤ 7<br>item_refundable == true<br>fail verdict: DENY</div>
+    </div>
+  </div>
+</div>
+
+<div style="background:#fdf5e4;">
+  <div style="display:flex;align-items:center;gap:10px;padding:7px 16px;border-bottom:0.5px solid #e0c888;">
+    <span style="background:#7a4808;color:white;font-size:10px;padding:2px 10px;border-radius:10px;font-weight:500;">LAYER 3</span>
+    <span style="font-size:11px;font-weight:500;color:#4a2c04;">World Operation — ⑧⑨⑩⑪</span>
+    <span style="margin-left:auto;font-size:10px;color:#9a6010;font-family:var(--font-mono);">W_ops = ⟨O, V, H, A⟩</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;">
+    <div style="padding:14px 12px;border-right:0.5px solid #e0c888;">
+      <div style="font-size:10px;color:#b07818;margin-bottom:4px;">⑧</div>
+      <div style="font-size:30px;font-style:italic;color:#4a2c04;line-height:1;margin-bottom:3px;">O</div>
+      <div style="font-size:12px;font-weight:500;color:#4a2c04;margin-bottom:1px;">Observations &amp; grounding</div>
+      <div style="font-size:10px;color:#b07818;font-style:italic;margin-bottom:10px;">O = ⟨input, recog, ground, fallback⟩</div>
+      <div style="font-size:11px;color:#5a3408;line-height:1.7;">input: customer_request event<br>recog: order_id lookup<br>ground: delivery_ts → days_since</div>
+    </div>
+    <div style="padding:14px 12px;border-right:0.5px solid #e0c888;">
+      <div style="font-size:10px;color:#b07818;margin-bottom:4px;">⑨</div>
+      <div style="font-size:30px;font-style:italic;color:#4a2c04;line-height:1;margin-bottom:3px;">V</div>
+      <div style="font-size:12px;font-weight:500;color:#4a2c04;margin-bottom:1px;">Verdicts &amp; outcome contracts</div>
+      <div style="font-size:10px;color:#b07818;font-style:italic;margin-bottom:10px;">V = ⟨{ALLOW|DENY|ESC}, schema, evidence⟩</div>
+      <div style="font-size:11px;color:#5a3408;line-height:1.7;">ALLOW → commit next_state<br>DENY → return failed_guards<br>ESCALATE → human queue</div>
+    </div>
+    <div style="padding:14px 12px;border-right:0.5px solid #e0c888;">
+      <div style="font-size:10px;color:#b07818;margin-bottom:4px;">⑩</div>
+      <div style="font-size:30px;font-style:italic;color:#4a2c04;line-height:1;margin-bottom:3px;">H</div>
+      <div style="font-size:12px;font-weight:500;color:#4a2c04;margin-bottom:1px;">Human approvals</div>
+      <div style="font-size:10px;color:#b07818;font-style:italic;margin-bottom:10px;">H = ⟨trigger, actor, approval, timeout⟩</div>
+      <div style="font-size:11px;color:#5a3408;line-height:1.7;">actor: ops-agent<br>trigger: refund &gt; $500<br>timeout: 24h → auto-escalate</div>
+    </div>
+    <div style="padding:14px 12px;">
+      <div style="font-size:10px;color:#b07818;margin-bottom:4px;">⑪</div>
+      <div style="font-size:30px;font-style:italic;color:#4a2c04;line-height:1;margin-bottom:3px;">A</div>
+      <div style="font-size:12px;font-weight:500;color:#4a2c04;margin-bottom:1px;">Audit log &amp; learning</div>
+      <div style="font-size:10px;color:#b07818;font-style:italic;margin-bottom:10px;">A = ⟨events, snapshot, drift, recalib⟩</div>
+      <div style="font-size:11px;color:#5a3408;line-height:1.7;">TransitionRequested<br>GuardEvaluated, VerdictIssued<br>StateCommitted, drift hooks</div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--color-background-secondary);padding:9px 16px;display:flex;gap:20px;flex-wrap:wrap;border-top:0.5px solid var(--color-border-tertiary);">
+  <div style="display:flex;align-items:center;gap:6px;"><div style="width:9px;height:9px;border-radius:50%;background:#5045c8;"></div><span style="font-size:11px;color:var(--color-text-secondary);">World Definition — M, E, Σ</span></div>
+  <div style="display:flex;align-items:center;gap:6px;"><div style="width:9px;height:9px;border-radius:50%;background:#0c6e50;"></div><span style="font-size:11px;color:var(--color-text-secondary);">World Dynamics — S, T, C</span></div>
+  <div style="display:flex;align-items:center;gap:6px;"><div style="width:9px;height:9px;border-radius:50%;background:#7a4808;"></div><span style="font-size:11px;color:var(--color-text-secondary);">World Operation — O, V, H, A</span></div>
+</div>
+
+</div></body></html>

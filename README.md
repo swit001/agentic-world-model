@@ -56,6 +56,13 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ---
 
+
+## World Model Canvas
+
+View the canvas: [World Model Canvas HTML](assets/world_model_canvas_en.html)
+
+The canvas shows how ESTC expands into the full enterprise world structure: definition, dynamics, and operation.
+
 ## Architecture
 
 Agentic World Model is the symbolic side of a neuro-symbolic runtime. The neural layer interprets observations, estimates belief, and proposes transition candidates. The symbolic layer adjudicates whether those candidates are executable under the declared world.
