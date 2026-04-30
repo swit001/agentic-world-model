@@ -1,0 +1,66 @@
+name: commerce_refund_world
+version: 0.1.0
+mission:
+  scope: Refund and return operations for ecommerce orders
+entities:
+  Order:
+    id: order_id
+    states:
+      - Created
+      - Paid
+      - Shipped
+      - Delivered
+      - RefundRequested
+      - Refunded
+      - Cancelled
+transitions:
+  RequestRefund:
+    entity: Order
+    from: Delivered
+    to: RefundRequested
+    trigger: customer_request
+    guards:
+      - id: refund_window
+        expression: days_since_delivery <= 7
+        message: Refund window exceeded
+      - id: refundable_item
+        expression: item_refundable == true
+        message: Item is not refundable
+  ApproveRefund:
+    entity: Order
+    from: RefundRequested
+    to: Refunded
+    trigger: agent_or_human_approval
+    guards:
+      - id: refund_request_exists
+        expression: refund_request_exists == true
+        message: Refund request does not exist
+  ShipOrder:
+    entity: Order
+    from: Paid
+    to: Shipped
+    trigger: fulfillment_event
+    guards: []
+  DeliverOrder:
+    entity: Order
+    from: Shipped
+    to: Delivered
+    trigger: delivery_event
+    guards: []
+  CancelOrder:
+    entity: Order
+    from: Created
+    to: Cancelled
+    trigger: customer_or_admin_request
+    guards: []
+verdicts:
+  allowed:
+    - ALLOW
+    - DENY
+    - ESCALATE
+audit:
+  events:
+    - TransitionRequested
+    - GuardEvaluated
+    - VerdictIssued
+    - StateCommitted

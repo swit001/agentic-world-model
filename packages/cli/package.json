@@ -1,0 +1,23 @@
+{
+  "name": "@agentic-world-model/cli",
+  "version": "0.1.0",
+  "description": "CLI for agentic-world-model",
+  "main": "dist/index.js",
+  "bin": {
+    "awm": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@agentic-world-model/core": "workspace:*",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.2"
+  }
+}

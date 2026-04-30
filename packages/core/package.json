@@ -1,0 +1,21 @@
+{
+  "name": "@agentic-world-model/core",
+  "version": "0.1.0",
+  "description": "Core world model engine for agentic-world-model",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "ajv": "^8.13.0",
+    "yaml": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.2"
+  }
+}

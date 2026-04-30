@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-world-model.dev/schemas/world.schema.json",
+  "title": "AgenticWorldModel",
+  "description": "Schema for agentic-world-model YAML world definitions",
+  "type": "object",
+  "required": ["name", "version", "mission", "entities", "transitions", "verdicts", "audit"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "mission": {
+      "type": "object",
+      "required": ["scope"],
+      "additionalProperties": false,
+      "properties": {
+        "scope": { "type": "string" }
+      }
+    },
+    "entities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["id", "states"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "states": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "transitions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["entity", "from", "to", "trigger"],
+        "additionalProperties": false,
+        "properties": {
+          "entity": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "trigger": { "type": "string" },
+          "guards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "expression", "message"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "expression": { "type": "string" },
+                "message": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "verdicts": {
+      "type": "object",
+      "required": ["allowed"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": ["events"],
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}
