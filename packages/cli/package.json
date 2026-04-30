@@ -3,8 +3,19 @@
   "version": "0.1.0",
   "description": "CLI for agentic-world-model",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
-    "awm": "dist/index.js"
+    "awm": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swit001/agentic-world-model"
   },
   "scripts": {
     "build": "tsc",
@@ -12,7 +23,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@agentic-world-model/core": "workspace:*",
+    "@agentic-world-model/core": "0.1.0",
     "commander": "^12.0.0"
   },
   "devDependencies": {

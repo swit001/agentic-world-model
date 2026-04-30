@@ -4,6 +4,16 @@
   "description": "Core world model engine for agentic-world-model",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swit001/agentic-world-model"
+  },
   "scripts": {
     "build": "tsc",
     "test": "vitest run",

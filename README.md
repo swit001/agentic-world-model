@@ -86,6 +86,23 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ---
 
+## npm Usage
+
+No install required — run directly with npx:
+
+```bash
+npx @agentic-world-model/cli validate examples/commerce/refund.world.yaml
+```
+
+Or install globally:
+
+```bash
+npm install -g @agentic-world-model/cli
+awm validate examples/commerce/refund.world.yaml
+```
+
+---
+
 ## Quickstart
 
 Requires Node.js 18+ and pnpm.
