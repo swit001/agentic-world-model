@@ -4,7 +4,7 @@
 
 > This is not another agent framework. It is a world specification layer for agentic execution.
 
-[![CI](https://github.com/your-org/agentic-world-model/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/agentic-world-model/actions/workflows/ci.yml)
+[![CI](https://github.com/swit001/agentic-world-model/actions/workflows/ci.yml/badge.svg)](https://github.com/swit001/agentic-world-model/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
 
