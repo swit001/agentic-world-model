@@ -316,6 +316,25 @@ Left side: a context key. Right side: number, boolean, or quoted string.
 
 ---
 
+## World Model Canvas
+
+The **World Model Canvas** is a structured design tool for all ten components of `W = <M, E, Σ, S, T, C, O, V, H, A>`, organized into three layers:
+
+| Layer | Components | Purpose |
+|-------|-----------|---------|
+| **World Definition** | M, E, Σ | What the world *is* |
+| **World Dynamics** | S, T, C | How the world *moves* |
+| **World Operation** | O, V, H, A | How the world *runs* |
+
+| File | Description |
+|------|-------------|
+| [`canvas/world-model-canvas.template.yaml`](canvas/world-model-canvas.template.yaml) | Annotated YAML template — copy and fill in |
+| [`canvas/world-model-canvas.schema.json`](canvas/world-model-canvas.schema.json) | JSON Schema for validating canvas files |
+| [`canvas/world-model-canvas.mermaid`](canvas/world-model-canvas.mermaid) | Architecture diagram of the ten components |
+| [`canvas/README.md`](canvas/README.md) | Full canvas documentation |
+
+---
+
 ## License
 
 Apache 2.0 — see [LICENSE](LICENSE).
@@ -326,5 +345,7 @@ Apache 2.0 — see [LICENSE](LICENSE).
 
 - [Roadmap](ROADMAP.md)
 - [Contributing](CONTRIBUTING.md)
+- [World Model Canvas](canvas/README.md)
 - [JSON Schema](schemas/world.schema.json)
 - [Commerce example](examples/commerce/refund.world.yaml)
+- [Commerce diagram](examples/commerce/refund.diagram.mermaid)

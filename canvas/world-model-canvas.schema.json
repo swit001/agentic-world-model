@@ -1,0 +1,277 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentic-world-model.dev/schemas/canvas.schema.json",
+  "title": "WorldModelCanvas",
+  "description": "Schema for W = <M, E, Σ, S, T, C, O, V, H, A> canvas definitions",
+  "type": "object",
+  "required": ["canvas_version", "world_id", "name", "version", "mission", "entities", "state_space", "transitions", "verdicts", "audit"],
+  "additionalProperties": false,
+  "properties": {
+    "canvas_version": { "type": "string" },
+    "world_id": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+
+    "mission": {
+      "$comment": "M — Mission and scope",
+      "type": "object",
+      "required": ["scope"],
+      "additionalProperties": false,
+      "properties": {
+        "scope": { "type": "string" },
+        "goal": { "type": "string" },
+        "owner": { "type": "string" },
+        "boundaries": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "entities": {
+      "$comment": "E — Entities and ontology",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["entity", "type"],
+              "additionalProperties": false,
+              "properties": {
+                "entity": { "type": "string" },
+                "type": { "type": "string", "enum": ["owns", "belongs_to", "references"] }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "state_space": {
+      "$comment": "Σ — State space and SSOT schema",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["states"],
+        "additionalProperties": false,
+        "properties": {
+          "initial": { "type": "string" },
+          "states": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string" },
+                "terminal": { "type": "boolean", "default": false },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "current_states": {
+      "$comment": "S — Current states in the SSOT",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity", "instance_id", "state"],
+        "additionalProperties": false,
+        "properties": {
+          "entity": { "type": "string" },
+          "instance_id": { "type": "string" },
+          "state": { "type": "string" },
+          "as_of": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+
+    "transitions": {
+      "$comment": "T — Transitions",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["entity", "from", "to", "trigger"],
+        "additionalProperties": false,
+        "properties": {
+          "entity": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "trigger": { "type": "string" },
+          "guards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "expression", "message"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "expression": { "type": "string" },
+                "message": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "constraints": {
+      "$comment": "C — Constraints and policies",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "global": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "description": { "type": "string" },
+              "expression": { "type": "string" }
+            }
+          }
+        },
+        "per_entity": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "description"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "description": { "type": "string" },
+                "expression": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "observations": {
+      "$comment": "O — Observations and grounding",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "entity"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string", "enum": ["event", "poll", "webhook", "manual"] },
+              "entity": { "type": "string" },
+              "fields": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "context_schema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["key", "type"],
+            "additionalProperties": false,
+            "properties": {
+              "key": { "type": "string" },
+              "type": { "type": "string", "enum": ["string", "number", "boolean"] },
+              "required": { "type": "boolean", "default": false },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "verdicts": {
+      "$comment": "V — Verdicts and outcome contracts",
+      "type": "object",
+      "required": ["allowed"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["ALLOW", "DENY", "ESCALATE"] },
+          "minItems": 1
+        },
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["description"],
+            "additionalProperties": false,
+            "properties": {
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "human_approval": {
+      "$comment": "H — Human approvals and escalation",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "escalation_triggers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["transition"],
+            "additionalProperties": false,
+            "properties": {
+              "transition": { "type": "string" },
+              "condition": { "type": "string" },
+              "route_to": { "type": "string" },
+              "sla_minutes": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "approval_required_for": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "audit": {
+      "$comment": "A — Audit trail and learning history",
+      "type": "object",
+      "required": ["events"],
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "retention_days": { "type": "integer", "minimum": 1 },
+        "learning": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "track_denials": { "type": "boolean" },
+            "track_escalations": { "type": "boolean" },
+            "feedback_loop": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

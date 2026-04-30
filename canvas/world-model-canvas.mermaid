@@ -1,0 +1,52 @@
+%%{init: {"theme": "neutral"}}%%
+flowchart TD
+    subgraph L1["Layer 1 · World Definition"]
+        direction LR
+        M["**M**\nMission & Scope\n──────────\ngoal · owner · boundaries"]
+        E["**E**\nEntities & Ontology\n──────────\nid · relationships"]
+        Sigma["**Σ**\nState Space & SSOT Schema\n──────────\nstates · initial · terminal"]
+    end
+
+    subgraph L2["Layer 2 · World Dynamics"]
+        direction LR
+        S["**S**\nCurrent States\n──────────\ninstance · state · as_of"]
+        T["**T**\nTransitions\n──────────\nfrom · to · trigger · guards"]
+        C["**C**\nConstraints & Policies\n──────────\nglobal · per_entity"]
+    end
+
+    subgraph L3["Layer 3 · World Operation"]
+        direction LR
+        O["**O**\nObservations & Grounding\n──────────\nsources · context_schema"]
+        V["**V**\nVerdicts & Outcome Contracts\n──────────\nALLOW · DENY · ESCALATE"]
+        H["**H**\nHuman Approvals & Escalation\n──────────\ntriggers · routes · SLA"]
+        A["**A**\nAudit Trail & Learning\n──────────\nevents · retention · feedback"]
+    end
+
+    %% World Definition flow
+    M --> E
+    E --> Sigma
+
+    %% Definition feeds Dynamics
+    Sigma -->|"valid states"| S
+    Sigma -->|"state constraints"| T
+    E -->|"entity type"| T
+    C -->|"policy gates"| T
+
+    %% Dynamics feeds Operation
+    O -->|"grounds context"| S
+    T -->|"transition attempt"| V
+
+    %% Operation routing
+    V -->|"ESCALATE"| H
+    V -->|"ALLOW / DENY"| A
+    H -->|"approval decision"| A
+    H -->|"approved"| T
+
+    %% Styling
+    classDef layer1 fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    classDef layer2 fill:#dcfce7,stroke:#22c55e,color:#14532d
+    classDef layer3 fill:#fef9c3,stroke:#eab308,color:#713f12
+
+    class M,E,Sigma layer1
+    class S,T,C layer2
+    class O,V,H,A layer3

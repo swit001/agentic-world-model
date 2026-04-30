@@ -1,0 +1,6 @@
+stateDiagram-v2
+  Delivered --> RefundRequested: RequestRefund
+  RefundRequested --> Refunded: ApproveRefund
+  Paid --> Shipped: ShipOrder
+  Shipped --> Delivered: DeliverOrder
+  Created --> Cancelled: CancelOrder

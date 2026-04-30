@@ -1,0 +1,142 @@
+# World Model Canvas — W = <M, E, Σ, S, T, C, O, V, H, A>
+# ──────────────────────────────────────────────────────────
+# Three layers:
+#   World Definition  → M, E, Σ
+#   World Dynamics    → S, T, C
+#   World Operation   → O, V, H, A
+
+canvas_version: "1.0"
+world_id: "your-world-id"
+name: ""
+version: "0.1.0"
+
+# ═══════════════════════════════════════════════════════════
+# LAYER 1: WORLD DEFINITION
+# ═══════════════════════════════════════════════════════════
+
+# M — Mission and scope
+# What this world governs, who owns it, and what it does NOT cover.
+mission:
+  scope: ""                        # one-line domain description
+  goal: ""                         # what successful agent behavior looks like
+  owner: ""                        # team or role responsible for this world
+  boundaries:
+    - ""                           # explicit out-of-scope items
+
+# E — Entities and ontology
+# Real-world objects the world reasons about and their relationships.
+entities:
+  EntityName:
+    id: entity_id_field            # primary key field name in your SSOT
+    description: ""
+    relationships:
+      - entity: ""
+        type: owns                 # owns | belongs_to | references
+
+# Σ — State space and SSOT schema
+# The complete set of valid states each entity can occupy.
+state_space:
+  EntityName:
+    initial: ""                    # starting state for new instances
+    states:
+      - name: ""
+        terminal: false            # true if no outbound transitions exist
+        description: ""
+
+# ═══════════════════════════════════════════════════════════
+# LAYER 2: WORLD DYNAMICS
+# ═══════════════════════════════════════════════════════════
+
+# S — Current states in the SSOT
+# Snapshot of live entity instances (injected at runtime; shown here for design).
+current_states:
+  - entity: ""
+    instance_id: ""
+    state: ""
+    as_of: ""                      # ISO 8601 timestamp
+
+# T — Transitions
+# All allowed state changes with the guards that gate them.
+transitions:
+  TransitionName:
+    entity: ""
+    from: ""
+    to: ""
+    trigger: ""                    # event, API call, or agent action
+    guards:
+      - id: ""
+        expression: ""             # e.g. days_since_delivery <= 7
+        message: ""                # shown when guard fails
+
+# C — Constraints and policies
+# World-level rules that apply across entities and transitions.
+constraints:
+  global:
+    - id: ""
+      description: ""
+      expression: ""               # evaluated against full world context
+  per_entity:
+    EntityName:
+      - id: ""
+        description: ""
+        expression: ""
+
+# ═══════════════════════════════════════════════════════════
+# LAYER 3: WORLD OPERATION
+# ═══════════════════════════════════════════════════════════
+
+# O — Observations and grounding
+# How the world receives external signals and what context it expects.
+observations:
+  sources:
+    - id: ""
+      type: event                  # event | poll | webhook | manual
+      entity: ""
+      fields: []
+  context_schema:
+    - key: ""
+      type: string                 # string | number | boolean
+      required: false
+      description: ""
+
+# V — Verdicts and outcome contracts
+# The three possible outcomes of every transition attempt.
+verdicts:
+  allowed:
+    - ALLOW
+    - DENY
+    - ESCALATE
+  outcomes:
+    ALLOW:
+      description: "Transition is valid; commit next state to SSOT"
+    DENY:
+      description: "Transition blocked; entity remains in prior state"
+    ESCALATE:
+      description: "Transition requires human review before any state commit"
+
+# H — Human approvals and escalation
+# When agent autonomy stops and humans take over.
+human_approval:
+  escalation_triggers:
+    - transition: ""
+      condition: ""                # e.g. order_amount > 10000
+      route_to: ""                 # team, queue, or role identifier
+      sla_minutes: 60
+  approval_required_for: []       # transition names that always require human sign-off
+
+# A — Audit trail and learning history
+# What is recorded and how it feeds back into future decisions.
+audit:
+  events:
+    - TransitionRequested
+    - GuardEvaluated
+    - VerdictIssued
+    - StateCommitted
+    - EscalationRaised
+    - HumanApprovalGranted
+    - HumanApprovalDenied
+  retention_days: 90
+  learning:
+    track_denials: true
+    track_escalations: true
+    feedback_loop: false           # set true when denials tune guard thresholds
