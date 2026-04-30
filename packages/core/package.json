@@ -1,7 +1,12 @@
 {
   "name": "@agentic-world-model/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Core world model engine for agentic-world-model",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swit001/agentic-world-model.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
