@@ -85,19 +85,25 @@ flowchart TD
 
 ---
 
-## npm Usage
+## Install
 
-No install required — run directly with npx:
+Use the CLI without installation:
 
 ```bash
-npx @agentic-world-model/cli validate examples/commerce/refund.world.yaml
+npx @agentic-world-model/cli@latest validate examples/commerce/refund.world.yaml
 ```
 
-Or install globally:
+Or install the CLI globally:
 
 ```bash
 npm install -g @agentic-world-model/cli
 awm validate examples/commerce/refund.world.yaml
+```
+
+Or install the core SDK as a library:
+
+```bash
+npm i @agentic-world-model/core
 ```
 
 ---
