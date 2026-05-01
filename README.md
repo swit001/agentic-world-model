@@ -471,6 +471,9 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
 - [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
 
-## Runtime Companion
+## Runtime companion
 
-If `agentic-world-model` is the map, [`estc-world-model`](https://github.com/swit001/estc-world-model) is the engine: a lightweight Python runtime for Entity-State-Transition-Constraint based agent execution.
+This repository is the blueprint for drawing an executable world model.
+
+If `agentic-world-model` is the canvas for designing the world, [`estc-world-model`](https://github.com/swit001/estc-world-model) is the runtime engine that brings that design to life in code.
+
