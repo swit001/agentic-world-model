@@ -470,3 +470,7 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [Commerce example](examples/commerce/refund.world.yaml)
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
 - [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
+
+## Runtime Companion
+
+If `agentic-world-model` is the map, [`estc-world-model`](https://github.com/swit001/estc-world-model) is the engine: a lightweight Python runtime for Entity-State-Transition-Constraint based agent execution.
