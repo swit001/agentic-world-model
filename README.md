@@ -291,6 +291,24 @@ stateDiagram-v2
   Created --> Cancelled: CancelOrder
 ```
 
+### Marketing media mix simulation
+
+```bash
+pnpm awm validate examples/marketing/media_mix_simulation/media_mix.world.yaml
+```
+
+```bash
+pnpm awm simulate examples/marketing/media_mix_simulation/media_mix.world.yaml SelectScenario \
+  --entity MediaPlan --state SimulationReady \
+  --context confidence=0.74,predicted_roas_lift=0.116,total_budget=100000,inventory_available=true,audience_policy_risk=medium
+```
+
+```bash
+pnpm awm simulate examples/marketing/media_mix_simulation/media_mix.world.yaml DetectPredictionDrift \
+  --entity MediaPlan --state Tracking \
+  --context prediction_mape=0.146
+```
+
 ---
 
 ## World YAML Format
@@ -336,6 +354,8 @@ audit:
     - VerdictIssued
     - StateCommitted
 ```
+
+For a more advanced world with simulation, approval, tracking, and resimulation, see [`examples/marketing/media_mix_simulation/media_mix.world.yaml`](examples/marketing/media_mix_simulation/media_mix.world.yaml).
 
 ---
 
@@ -428,4 +448,7 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [JSON Schema](schemas/world.schema.json)
 - [Commerce example](examples/commerce/refund.world.yaml)
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
-- [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
+- [Marketing: Media Mix Simulation README](examples/marketing/media_mix_simulation/README.md)
+- [Marketing: Media Mix Simulation world](examples/marketing/media_mix_simulation/media_mix.world.yaml)
+- [Marketing: Media Mix Simulation scenarios](examples/marketing/media_mix_simulation/scenarios.json)
+- [Marketing: Media Mix Simulation tracking](examples/marketing/media_mix_simulation/tracking.json)
