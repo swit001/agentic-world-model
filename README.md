@@ -461,7 +461,4 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [JSON Schema](schemas/world.schema.json)
 - [Commerce example](examples/commerce/refund.world.yaml)
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
-- [Marketing: Media Mix Simulation README](examples/marketing/media_mix_simulation/README.md)
-- [Marketing: Media Mix Simulation world](examples/marketing/media_mix_simulation/media_mix.world.yaml)
-- [Marketing: Media Mix Simulation scenarios](examples/marketing/media_mix_simulation/scenarios.json)
-- [Marketing: Media Mix Simulation tracking](examples/marketing/media_mix_simulation/tracking.json)
+- [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
