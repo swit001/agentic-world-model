@@ -177,7 +177,7 @@ npx @agentic-world-model/cli@latest validate examples/marketing/media_mix_simula
 # Select an actionable scenario
 npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml SelectScenario \
   --entity MediaPlan --state SimulationReady \
-  --context confidence=0.74,predicted_roas_lift=0.116,total_budget=100000,approved_budget_limit=120000,inventory_available=true,audience_policy_risk=medium
+  --context confidence=0.74,predicted_roas_lift=0.116,total_budget=100000,inventory_available=true,audience_policy_risk=medium
 ```
 
 See:
