@@ -170,6 +170,8 @@ See: [`examples/commerce/refund.world.yaml`](examples/commerce/refund.world.yaml
 
 An advanced example showing a neural optimizer generating multiple media mix scenarios with predicted ROAS, expected lift, confidence, and rationale. The symbolic world model checks actionability, routes marketer approval, commits the selected scenario, tracks predicted-vs-actual performance, and triggers resimulation when prediction accuracy drifts.
 
+This is not only an MMM example. It is a world-centered optimization pattern: neural simulation proposes possible futures, symbolic guards decide executability, marketers choose what to commit, and runtime tracking verifies whether the selected future came true.
+
 ```bash
 # Validate the world
 npx @agentic-world-model/cli@latest validate examples/marketing/media_mix_simulation/media_mix.world.yaml
