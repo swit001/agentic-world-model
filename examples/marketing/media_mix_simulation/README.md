@@ -85,7 +85,20 @@ npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simula
 
 Expected verdict: `DENY`
 
-### 4. Try commit without marketer approval
+### 4. Scenario C — highest ROAS but blocked by policy
+
+Scenario C has the highest predicted ROAS lift (0.143), but it is blocked because `audience_policy_risk` is `high`. The world model prioritizes policy executability over predicted optimization upside:
+
+```bash
+npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml SelectScenario \
+  --entity MediaPlan \
+  --state SimulationReady \
+  --context confidence=0.81,predicted_roas_lift=0.143,total_budget=100000,inventory_available=true,audience_policy_risk=high
+```
+
+Expected verdict: `DENY`
+
+### 5. Try commit without marketer approval
 
 ```bash
 npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml CommitScenario \
@@ -95,7 +108,7 @@ npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simula
 
 Expected verdict: `DENY`
 
-### 5. Commit with marketer approval
+### 6. Commit with marketer approval
 
 ```bash
 npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml CommitScenario \
@@ -105,7 +118,7 @@ npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simula
 
 Expected verdict: `ALLOW`
 
-### 6. Detect prediction drift
+### 7. Detect prediction drift
 
 Actual MAPE of 0.146 exceeds the threshold of 0.12:
 
@@ -117,7 +130,7 @@ npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simula
 
 Expected verdict: `ALLOW` (drift confirmed, transition to `DriftDetected`)
 
-### 7. Request resimulation
+### 8. Request resimulation
 
 ```bash
 npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml RequestResimulation \
@@ -131,8 +144,8 @@ Expected verdict: `ALLOW` (loops back to `SimulationReady`)
 
 ## What developers should notice
 
-**Guards are not just validation — they are the boundary between neural and symbolic.**
-The neural optimizer can generate any scenario. The symbolic world model is what makes a scenario *executable*. Scenario C has the highest predicted ROAS (2.72) but cannot be committed because its audience policy risk is `high`. The world enforces this without exception.
+**The highest predicted ROAS scenario is not necessarily executable.**
+Scenario C has the highest predicted ROAS lift (0.143) — better than the scenario that gets approved — but the symbolic world blocks it because `audience_policy_risk` is `high`. The world model does not optimize for the best predicted outcome; it enforces policy executability first. A neural optimizer can recommend Scenario C all it wants; the world will not allow it through.
 
 **Confidence and ROAS lift are first-class guards.**
 The world does not trust the neural layer blindly. A scenario must meet minimum confidence and minimum lift thresholds before it can enter the approval flow. Scenario B is blocked here — not by a human, by the world.
