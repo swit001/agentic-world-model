@@ -471,7 +471,7 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
 - [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
 
-## Runtime companion
+## Runtime Companion
 
 This repository is the blueprint for drawing an executable world model.
 
