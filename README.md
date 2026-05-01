@@ -397,24 +397,37 @@ Left side: a context key. Right side: number, boolean, or quoted string.
 
 ## Open Source vs Enterprise
 
-**Open source (this repo)**
+### Open source — this repo
 
-- World schema and YAML format
-- Validator, simulator, predictor, diagram generator
-- CLI
-- Example worlds
+This repo is not the full enterprise world model itself.  
+It is the minimal open-source grammar and toolkit for declaring, validating, simulating, and visualizing executable worlds.
 
-**Enterprise / commercial (planned)**
+It includes:
 
-- Domain packs: pre-built worlds for finance, HR, legal, logistics
-- Production runtime with persistence and high availability
-- Governance dashboard: drift detection, violation alerts
-- World versioning and rollback
-- Connector library: Salesforce, SAP, Jira, Slack
-- SLA and compliance policy templates
+- World specification format
+- ESTC YAML examples
+- JSON Schema validation
+- Transition simulation
+- Guard-based verdicts
+- Path prediction
+- Mermaid diagram generation
+- Commerce and marketing example worlds
 
----
+### Enterprise / commercial
 
+The enterprise version extends this open-source grammar into a production-grade world-centered execution platform.
+
+Enterprise capabilities include:
+
+- Complete enterprise world models for real organizations
+- Production Agent OS
+- Full runtime orchestration engine
+- Real MMM / optimization engines
+- Enterprise SSOT integration
+- Approval, audit, and governance backend
+- Domain packs for finance, HR, legal, logistics, marketing, and operations
+- Connector library for systems such as Salesforce, SAP, Jira, Slack, and data warehouses
+- World versioning, rollback, drift detection, and policy enforcement
 ## World Model Canvas
 
 The **World Model Canvas** is a structured design tool for all ten components of `W = <M, E, Σ, S, T, C, O, V, H, A>`, organized into three layers:
