@@ -59,6 +59,8 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ## World Model Canvas
 
+![World Model Canvas](assets/world-model-canvas.svg)
+
 View the canvas: [World Model Canvas HTML](assets/world_model_canvas_en.html)
 
 The canvas shows how ESTC expands into the full enterprise world structure: definition, dynamics, and operation.
