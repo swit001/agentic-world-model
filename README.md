@@ -119,6 +119,14 @@ npm i @agentic-world-model/core
 
 ## Quickstart
 
+Try it in 30 seconds, no clone required:
+
+```bash
+npx @agentic-world-model/cli@latest simulate examples/commerce/refund.world.yaml RequestRefund \
+  --entity Order --state Delivered \
+  --context days_since_delivery=5,item_refundable=true
+```
+
 Requires Node.js 18+ and pnpm.
 
 
