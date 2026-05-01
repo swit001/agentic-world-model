@@ -1,0 +1,21 @@
+{
+  "entity": "MediaPlan",
+  "state": "Monitoring",
+  "current_roas": 2.4,
+  "approved_budget_limit": 120000,
+  "current_mix": {
+    "paid_search": 50000,
+    "ctv": 30000,
+    "retail_media": 20000
+  },
+  "signals": {
+    "paid_search_saturation": "high",
+    "ctv_inventory_available": true,
+    "retail_media_incrementality": "medium",
+    "audience_overlap_risk": "medium"
+  },
+  "prediction_accuracy": {
+    "last_7_days_mape": 0.09,
+    "threshold": 0.12
+  }
+}

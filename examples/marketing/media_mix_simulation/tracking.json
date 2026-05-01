@@ -1,0 +1,30 @@
+{
+  "committed_scenario": "scenario_a",
+  "committed_mix": {
+    "paid_search": 20000,
+    "ctv": 50000,
+    "retail_media": 30000
+  },
+  "predicted": {
+    "roas": 2.68,
+    "roas_lift": 0.116,
+    "incremental_revenue": 268000
+  },
+  "actual": {
+    "roas": 2.46,
+    "roas_lift": 0.025,
+    "incremental_revenue": 246000
+  },
+  "prediction_accuracy": {
+    "mape": 0.146,
+    "threshold": 0.12,
+    "drift_detected": true
+  },
+  "drift_summary": "Actual ROAS of 2.46 underperformed predicted 2.68. CTV view-through attribution weaker than modeled. Retail media lift within expected range. Paid search recovery faster than expected after budget reduction.",
+  "learning_hooks": [
+    "reestimate_channel_saturation",
+    "update_audience_overlap_assumption",
+    "rerun_media_mix_simulation"
+  ],
+  "next_recommended_transition": "RequestResimulation"
+}

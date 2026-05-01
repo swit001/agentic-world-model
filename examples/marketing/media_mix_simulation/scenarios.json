@@ -1,0 +1,84 @@
+{
+  "simulation_id": "sim_20260501_001",
+  "reason": "Paid search saturation detected. Neural optimizer triggered to explore alternative channel allocations.",
+  "belief": "Current ROAS of 2.4 is suppressed by paid search saturation. Reallocating budget toward CTV and retail media is predicted to improve incrementality and overall ROAS.",
+  "scenarios": {
+    "scenario_a": {
+      "label": "Rebalance: shift paid search budget to CTV and retail media",
+      "proposed_mix": {
+        "paid_search": 20000,
+        "ctv": 50000,
+        "retail_media": 30000
+      },
+      "total_budget": 100000,
+      "predicted_roas": 2.68,
+      "predicted_roas_lift": 0.116,
+      "predicted_incremental_revenue": 268000,
+      "confidence": 0.74,
+      "rationale": "Reducing paid search to address saturation. CTV expansion reaches new audience segments with strong view-through attribution. Retail media increase captures high-intent in-store shoppers.",
+      "actionability": {
+        "passed": true,
+        "guards_evaluated": [
+          { "id": "confidence_threshold", "passed": true },
+          { "id": "roas_lift_threshold", "passed": true },
+          { "id": "budget_within_limit", "passed": true },
+          { "id": "inventory_available", "passed": true },
+          { "id": "audience_policy_risk", "passed": true }
+        ]
+      }
+    },
+    "scenario_b": {
+      "label": "Conservative: increase retail media only",
+      "proposed_mix": {
+        "paid_search": 50000,
+        "ctv": 30000,
+        "retail_media": 35000
+      },
+      "total_budget": 115000,
+      "predicted_roas": 2.55,
+      "predicted_roas_lift": 0.063,
+      "predicted_incremental_revenue": 255000,
+      "confidence": 0.69,
+      "rationale": "Low-risk incremental spend in retail media. Does not address paid search saturation. Lift is modest and confidence is below threshold.",
+      "actionability": {
+        "passed": false,
+        "failed_guard": "roas_lift_threshold",
+        "reason": "Predicted ROAS lift of 0.063 does not meet minimum threshold of 0.08",
+        "guards_evaluated": [
+          { "id": "confidence_threshold", "passed": false },
+          { "id": "roas_lift_threshold", "passed": false },
+          { "id": "budget_within_limit", "passed": true },
+          { "id": "inventory_available", "passed": true },
+          { "id": "audience_policy_risk", "passed": true }
+        ]
+      }
+    },
+    "scenario_c": {
+      "label": "Aggressive: maximum CTV expansion with broad audience targeting",
+      "proposed_mix": {
+        "paid_search": 10000,
+        "ctv": 80000,
+        "retail_media": 20000
+      },
+      "total_budget": 110000,
+      "predicted_roas": 2.72,
+      "predicted_roas_lift": 0.133,
+      "predicted_incremental_revenue": 272000,
+      "confidence": 0.71,
+      "rationale": "Aggressive CTV expansion yields highest predicted ROAS but requires broad audience targeting that triggers audience policy risk. Cannot be actioned without policy exception.",
+      "actionability": {
+        "passed": false,
+        "failed_guard": "audience_policy_risk",
+        "reason": "Audience policy risk is classified as high — scenario cannot be selected",
+        "guards_evaluated": [
+          { "id": "confidence_threshold", "passed": true },
+          { "id": "roas_lift_threshold", "passed": true },
+          { "id": "budget_within_limit", "passed": true },
+          { "id": "inventory_available", "passed": true },
+          { "id": "audience_policy_risk", "passed": false }
+        ]
+      }
+    }
+  },
+  "recommended_scenario": "scenario_a"
+}

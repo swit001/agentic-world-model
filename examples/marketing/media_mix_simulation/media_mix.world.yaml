@@ -1,0 +1,114 @@
+name: marketing_media_mix_world
+version: 0.1.0
+mission:
+  scope: Neural media mix simulation, marketer approval, symbolic commit, and prediction tracking
+entities:
+  MediaPlan:
+    id: media_plan_id
+    states:
+      - Monitoring
+      - SimulationReady
+      - ScenarioSelected
+      - AwaitingMarketerApproval
+      - Approved
+      - Committed
+      - Live
+      - Tracking
+      - DriftDetected
+      - ResimulationRequired
+transitions:
+  GenerateScenarios:
+    entity: MediaPlan
+    from: Monitoring
+    to: SimulationReady
+    trigger: neural_optimizer_trigger
+    guards: []
+  SelectScenario:
+    entity: MediaPlan
+    from: SimulationReady
+    to: ScenarioSelected
+    trigger: scenario_selection
+    guards:
+      - id: confidence_threshold
+        expression: confidence >= 0.7
+        message: Scenario confidence is below required threshold
+      - id: roas_lift_threshold
+        expression: predicted_roas_lift >= 0.08
+        message: Predicted ROAS lift does not meet minimum threshold
+      - id: budget_within_limit
+        expression: total_budget <= 120000
+        message: Scenario budget exceeds approved budget limit
+      - id: inventory_available
+        expression: inventory_available == true
+        message: Required inventory is not available
+      - id: audience_policy_risk
+        expression: audience_policy_risk != "high"
+        message: Scenario carries high audience policy risk and cannot be selected
+  RequestApproval:
+    entity: MediaPlan
+    from: ScenarioSelected
+    to: AwaitingMarketerApproval
+    trigger: approval_request
+    guards: []
+  ApproveScenario:
+    entity: MediaPlan
+    from: AwaitingMarketerApproval
+    to: Approved
+    trigger: marketer_approval
+    guards: []
+  CommitScenario:
+    entity: MediaPlan
+    from: Approved
+    to: Committed
+    trigger: symbolic_commit
+    guards:
+      - id: marketer_approved
+        expression: marketer_approved == true
+        message: Marketer approval is required before committing scenario
+  LaunchScenario:
+    entity: MediaPlan
+    from: Committed
+    to: Live
+    trigger: campaign_launch
+    guards: []
+  StartTracking:
+    entity: MediaPlan
+    from: Live
+    to: Tracking
+    trigger: tracking_activation
+    guards: []
+  DetectPredictionDrift:
+    entity: MediaPlan
+    from: Tracking
+    to: DriftDetected
+    trigger: drift_monitor
+    guards:
+      - id: prediction_mape_exceeded
+        expression: prediction_mape > 0.12
+        message: Prediction accuracy is within acceptable range — no drift detected
+  RequestResimulation:
+    entity: MediaPlan
+    from: DriftDetected
+    to: ResimulationRequired
+    trigger: resimulation_request
+    guards:
+      - id: resimulation_required
+        expression: resimulation_required == true
+        message: Resimulation has not been flagged as required
+  RegenerateScenarios:
+    entity: MediaPlan
+    from: ResimulationRequired
+    to: SimulationReady
+    trigger: neural_optimizer_trigger
+    guards: []
+verdicts:
+  allowed:
+    - ALLOW
+    - DENY
+    - ESCALATE
+audit:
+  events:
+    - TransitionRequested
+    - GuardEvaluated
+    - VerdictIssued
+    - StateCommitted

@@ -149,6 +149,45 @@ pnpm awm simulate examples/commerce/refund.world.yaml RequestRefund \
 
 ---
 
+## Examples
+
+### Commerce: Refund (Hello World)
+
+A minimal example — one entity, four transitions, two guarded paths.
+
+```bash
+pnpm awm validate examples/commerce/refund.world.yaml
+pnpm awm simulate examples/commerce/refund.world.yaml RequestRefund \
+  --entity Order --state Delivered \
+  --context days_since_delivery=5,item_refundable=true
+```
+
+See: [`examples/commerce/refund.world.yaml`](examples/commerce/refund.world.yaml)
+
+---
+
+### Marketing: Media Mix Simulation
+
+An advanced example showing a neural optimizer generating multiple media mix scenarios with predicted ROAS, expected lift, confidence, and rationale. The symbolic world model checks actionability, routes marketer approval, commits the selected scenario, tracks predicted-vs-actual performance, and triggers resimulation when prediction accuracy drifts.
+
+```bash
+# Validate the world
+npx @agentic-world-model/cli@latest validate examples/marketing/media_mix_simulation/media_mix.world.yaml
+
+# Select an actionable scenario
+npx @agentic-world-model/cli@latest simulate examples/marketing/media_mix_simulation/media_mix.world.yaml SelectScenario \
+  --entity MediaPlan --state SimulationReady \
+  --context confidence=0.74,predicted_roas_lift=0.116,total_budget=100000,approved_budget_limit=120000,inventory_available=true,audience_policy_risk=medium
+```
+
+See:
+- [`examples/marketing/media_mix_simulation/README.md`](examples/marketing/media_mix_simulation/README.md)
+- [`examples/marketing/media_mix_simulation/media_mix.world.yaml`](examples/marketing/media_mix_simulation/media_mix.world.yaml)
+- [`examples/marketing/media_mix_simulation/scenarios.json`](examples/marketing/media_mix_simulation/scenarios.json)
+- [`examples/marketing/media_mix_simulation/tracking.json`](examples/marketing/media_mix_simulation/tracking.json)
+
+---
+
 ## CLI Examples
 
 ### `awm validate`
@@ -387,3 +426,4 @@ Apache 2.0 — see [LICENSE](LICENSE).
 - [JSON Schema](schemas/world.schema.json)
 - [Commerce example](examples/commerce/refund.world.yaml)
 - [Commerce diagram](examples/commerce/refund.diagram.mermaid)
+- [Marketing: Media Mix Simulation](examples/marketing/media_mix_simulation/README.md)
