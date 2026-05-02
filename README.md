@@ -56,7 +56,6 @@ W = <M, E, Σ, S, T, C, O, V, H, A>
 
 ---
 
-
 ## World Model Canvas
 
 ![World Model Canvas](assets/world-model-canvas.svg)
@@ -128,7 +127,6 @@ npx @agentic-world-model/cli@latest simulate examples/commerce/refund.world.yaml
 ```
 
 Requires Node.js 18+ and pnpm.
-
 
 ```bash
 # 0. Clone
@@ -454,6 +452,13 @@ The **World Model Canvas** is a structured design tool for all ten components of
 | [`canvas/README.md`](canvas/README.md) | Full canvas documentation |
 
 ---
+
+## World Model Ecosystem
+
+- [Agentic World Model](https://github.com/swit001/agentic-world-model) — map: executable world specification toolkit
+- [ESTC World Model Runtime](https://github.com/swit001/estc-world-model) — engine: Python runtime and schema export
+- [World Model Anti-Patterns](https://github.com/swit001/world-model-anti-patterns) — why it matters: failure catalog
+- [World Debt Detector](https://github.com/swit001/world-debt-detector) — measure it: CLI scanner for implicit world-model debt
 
 ## License
 
